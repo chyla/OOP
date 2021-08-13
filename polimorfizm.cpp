@@ -48,7 +48,7 @@ struct Transmitter : ITransmitter, virtual protected Diagnoser {
         std::cout << "[Transmitter] creating...\n";
     }
 
-    void send(const std::string &text) {
+    void send(const std::string &text) override {
         std::cout << "[Transmitter] sending: " << text << '\n';
         diagnose("sent: " + text);
     }
@@ -73,7 +73,7 @@ struct Radio : Transmitter, Receiver {
     Radio() : Diagnoser("radio.txt") {
     }
 
-    void send(const std::string &text) {
+    void send(const std::string &text) override {
         std::cout << "[Radio] sending...\n";
         Transmitter::diagnose("radio is sending: " + text);
         constexpr int num_of_chars_to_send = 10;
